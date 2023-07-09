@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %} {% load embed_video_tags %}
+{% block title %} {{ course.name }} {% endblock %}
+
+{% block content %} 
+{% if messages %}
+    {% for message in messages %}
+    <h2 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h2>
+    <hr>
+    {% endfor %}
+{% endif %}
+
+{% if is_instructor %}
+<button><a href="{% url 'add-course-content' pk=course.id %}"><h2>Add Content</h2></a></button>
+{% endif %}
+
+<br>
+<ol>
+    {% for content in contents %}
+    <li> {{ content.title }}</li>
+    {% video content.content_video 'small' %}
+    <br><hr>
+    {% endfor %}
+</ol>
+
+<hr>
+{% endblock %}

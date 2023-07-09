@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %} 
+<h1>HOME PAGE</h1>
+<h2>{{ user.username }}</h2>
+
+{% if user.portal_role == 'ins' %}
+<ul>
+    <li><a href="{% url 'new-course' %}">Create New Course</a> </li>
+</ul>
+
+<hr>
+<h2>My Courses</h2>
+<ul>
+    {% for course in user.courses.all %}
+    <li><a href="{% url 'view-course-content' pk=course.id %}">{{ course.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+{% endblock %}

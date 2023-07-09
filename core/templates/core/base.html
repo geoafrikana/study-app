@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="{% static 'core/css/nav_background.css' %}">
+      <link rel="stylesheet" href="{% static 'core/css/nav.css' %}">
+      <script src="{% static 'core/js/nav.js' %}" defer></script>
+      <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="brand-title"><a href="{% url 'home' %}">LMS</a></div>
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
+            {% if user.is_authenticated %} 
+
+            {% if user.portal_role == 'stu' %}
+            <li><a href="{% url 'view_all_courses' %}">All Courses</a></li>
+            <li><a href="{% url 'my_courses' %}">My Courses</a></li>
+
+            {% endif %}
+            
+            <li><a href="#">My Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            
+
+            {% else %}
+            <li><a href="{% url 'signup' portal_role='student' %}">New Student</a> </li>
+            <li><a href="{% url 'signup' portal_role='instructor' %}">New Instructor</a></li>
+            <li><a href="{% url 'login' %}"> Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+      {% block content %}
+      {% endblock %}
+    </body>
+</html>

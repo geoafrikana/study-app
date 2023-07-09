@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block title %} All Courses{% endblock %}
+
+{% block content %} 
+
+<h2>Courses</h2>
+<ol>
+
+    {% for course in courses %}
+    <li> <b>{{ course.name }} </b> by <b>{{ course.instructor.username }}</b> 
+        {% if not course.is_enrolled %}
+        <a href="{%url 'enroll_student' pk=course.id %}"><button>Enrol</button></a>
+
+        {% else %}
+        <button disabled >Enrolled</button>
+        {% endif %}
+    </li>
+    <hr>
+    {% endfor %}
+</ol>
+
+
+{% endblock %}

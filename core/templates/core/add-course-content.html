@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block title %} New Content {% endblock %}
+
+<h1>Add new content to {{ course.name }} </h1>
+<hr><br>
+{% block content %} 
+
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Content Title: <input name="content-title" type="text"></p>
+    <p>Content Video URL: <input name="content-url" type="url"></p>
+    <p><input type="submit"></p>
+</form>
+
+{% endblock %}

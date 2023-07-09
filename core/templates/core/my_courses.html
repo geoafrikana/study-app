@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block title %} All Courses{% endblock %}
+
+{% block content %} 
+
+<h2>Courses</h2>
+<ol>
+
+    {% for course in my_courses %}
+    <li> <b>{{ course.name }} </b> by <b>{{ course.instructor.username }}</b> 
+        <a href="{%url 'view-course-content' pk=course.id %}"><button>Learn</button></a>
+    </li>
+    <hr>
+    {% endfor %}
+</ol>
+
+
+{% endblock %}
