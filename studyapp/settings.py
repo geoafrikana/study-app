@@ -1,11 +1,18 @@
 from pathlib import Path
-from decouple import config
+# from decouple import config
+import json
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = config('SECRET_KEY')
+with open(BASE_DIR/'secrets.json') as f:
+    secrets = json.load(f)
+    SECRET_KEY = secrets['SECRET_KEY']
+
+
+
 
 DEBUG = True
 
